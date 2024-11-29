@@ -16,8 +16,8 @@ const projects: Project[] = [
   {
     title: "Portfolio Website",
     description: "My personal portfolio showcasing my journey as a software engineer. A clean, modern space to share my projects and professional experience while maintaining excellent performance and accessibility standards.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
-    languages: ["TypeScript", "CSS"],
+    technologies: ["Next.js", "React", "Tailwind CSS"],
+    languages: ["TypeScript", "JavaScript", "HTML", "CSS"],
     github: "https://github.com/danielmillar/portfolio",
     liveUrl: "https://danielmillar.dev",
     featured: true
