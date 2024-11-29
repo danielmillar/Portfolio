@@ -1,28 +1,7 @@
 import Navigation from '@/components/shared/Navigation';
 import Header from '@/components/home/Header';
 import { GithubIcon, Globe } from 'lucide-react';
-
-interface Project {
-  title: string;
-  description: string;
-  technologies: string[];
-  languages: string[];
-  github?: string;
-  liveUrl?: string;
-  featured?: boolean;
-}
-
-const projects: Project[] = [
-  {
-    title: "Portfolio Website",
-    description: "My personal portfolio showcasing my journey as a software engineer. A clean, modern space to share my projects and professional experience while maintaining excellent performance and accessibility standards.",
-    technologies: ["Next.js", "React", "Tailwind CSS"],
-    languages: ["TypeScript", "JavaScript", "HTML", "CSS"],
-    github: "https://github.com/danielmillar/portfolio",
-    liveUrl: "https://danielmillar.dev",
-    featured: true
-  }
-];
+import { Project, projects } from '@/data/projects';
 
 export default function ProjectsPage() {
   return (

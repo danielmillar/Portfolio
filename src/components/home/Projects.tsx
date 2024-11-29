@@ -1,28 +1,11 @@
 import { GithubIcon, Globe } from 'lucide-react';
-
-interface Project {
-  title: string;
-  description: string;
-  technologies: string[];
-  languages: string[];
-  github?: string;
-  liveUrl?: string;
-  featured?: boolean;
-}
-
-const featuredProjects: Project[] = [
-  {
-    title: "Portfolio Website",
-    description: "My personal portfolio showcasing my journey as a software engineer. A clean, modern space to share my projects and professional experience.",
-    technologies: ["Next.js", "React", "Tailwind CSS"],
-    languages: ["TypeScript", "JavaScript", "HTML", "CSS"],
-    github: "https://github.com/danielmillar/portfolio",
-    liveUrl: "https://danielmillar.dev",
-    featured: true
-  }
-];
+import { Project, projects } from '@/data/projects';
 
 export default function Projects() {
+  const featuredProjects = projects
+    .filter(project => project.featured)
+    .slice(0, 4);
+  
   return (
     <section className="mb-16">
       <div className="flex justify-between items-center mb-8">
