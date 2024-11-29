@@ -35,7 +35,7 @@ export default function ProjectsPage() {
             Projects
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            A collection of projects I've worked on, from web applications to open-source contributions.
+            A collection of projects I&apos;ve worked on, from web applications to open-source contributions.
           </p>
         </div>
 

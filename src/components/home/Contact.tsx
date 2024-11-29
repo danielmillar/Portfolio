@@ -34,10 +34,10 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            I'm always open to discussing new opportunities, interesting projects, or just having a friendly chat about technology.
+            I&apos;m always open to discussing new opportunities, interesting projects, or just having a friendly chat about technology.
           </p>
         </div>
         
