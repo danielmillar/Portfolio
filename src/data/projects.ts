@@ -24,7 +24,7 @@ export const projects: Project[] = [
     technologies: ["Skript", "ASWM", "Gradle"],
     languages: ["Kotlin"],
     github: "https://github.com/danielmillar/SkASWM",
-    featured: true
+    featured: false
   },
   {
     title: "KwikMedical",

@@ -1,10 +1,12 @@
-import { GithubIcon, Globe } from 'lucide-react';
+import { GithubIcon, Globe, ArrowRight } from 'lucide-react';
 import { Project, projects } from '@/data/projects';
+import Link from 'next/link';
 
 export default function Projects() {
   const featuredProjects = projects
     .filter(project => project.featured)
-    .slice(0, 4);
+    .slice(0, 2);
+  const hasMoreProjects = projects.length > 2;
   
   return (
     <section className="mb-16">
@@ -12,6 +14,15 @@ export default function Projects() {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Featured Projects
         </h2>
+        {hasMoreProjects && (
+          <Link
+            href="/projects"
+            className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 text-sm"
+          >
+            View All
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {featuredProjects.map((project, index) => (
