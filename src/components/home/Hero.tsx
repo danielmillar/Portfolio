@@ -1,19 +1,13 @@
 'use client';
-import { useState } from 'react';
 import Image from 'next/image';
 import { GithubIcon, DownloadIcon } from 'lucide-react';
-import { Alert } from '@/components/ui/Alert';
+import { useAlert } from '@/contexts/AlertContext';
 
 export default function Hero() {
-  const [showAlert, setShowAlert] = useState(false);
+  const { showAlert } = useAlert();
 
   return (
     <>
-      <Alert
-        isOpen={showAlert}
-        onClose={() => setShowAlert(false)}
-        message="Resume will be available soon!"
-      />
       <div className="flex flex-col-reverse md:flex-row items-center justify-between mb-16 gap-8">
         {/* Text Content */}
         <div className="flex-1 text-left">
@@ -40,7 +34,7 @@ export default function Hero() {
               <GithubIcon className="w-5 h-5" />
             </a>
             <button
-              onClick={() => setShowAlert(true)}
+              onClick={() => showAlert("Resume will be available soon!")}
               className="group px-6 py-2 border border-gray-900 dark:border-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex items-center gap-2"
             >
               <span>Resume</span>

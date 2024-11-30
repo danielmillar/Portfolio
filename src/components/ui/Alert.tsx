@@ -8,18 +8,17 @@ interface AlertProps {
   isOpen: boolean;
   onClose: () => void;
   message: string;
+  duration?: number;
 }
 
-export function Alert({ isOpen, onClose, message }: AlertProps) {
+export function Alert({ isOpen, onClose, message, duration = 5000 }: AlertProps) {
   const alertRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!alertRef.current) return;
 
     if (isOpen) {
-      // Reset position and opacity
-      gsap.set(alertRef.current, { y: -20, opacity: 0 });
-      // Animate in
+      gsap.set(alertRef.current, { y: -20, x: 0, opacity: 0 });
       gsap.to(alertRef.current, {
         y: 0,
         opacity: 1,
@@ -27,9 +26,8 @@ export function Alert({ isOpen, onClose, message }: AlertProps) {
         ease: 'power2.out'
       });
     } else {
-      // Animate out
       gsap.to(alertRef.current, {
-        y: -20,
+        x: 100,
         opacity: 0,
         duration: 0.2,
         ease: 'power2.in'
@@ -37,12 +35,10 @@ export function Alert({ isOpen, onClose, message }: AlertProps) {
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   return (
     <div 
       ref={alertRef}
-      className="fixed top-4 right-4 z-50"
+      className="z-[9999] w-full"
     >
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 flex items-center gap-3">
         <p className="text-gray-700 dark:text-gray-200">{message}</p>
