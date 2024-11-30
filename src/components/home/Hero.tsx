@@ -3,7 +3,7 @@
 import { LuGithub } from 'react-icons/lu';
 import { HiDownload } from 'react-icons/hi';
 import { useAlert } from '@/contexts/AlertContext';
-import { SiTypescript, SiEclipseadoptium , SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact } from 'react-icons/si';
+import { SiTypescript, SiEclipseadoptium , SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact, SiMysql } from 'react-icons/si';
 
 export default function Hero() {
   const { showAlert } = useAlert();
@@ -90,6 +90,10 @@ export default function Hero() {
             <SiGradle 
               className="text-4xl text-blue-400 absolute animate-float"
               style={{ top: '35%', left: '85%', animationDelay: '4.5s' }}
+            />
+            <SiMysql 
+              className="text-4xl text-blue-600 absolute animate-float"
+              style={{ top: '50%', left: '90%', animationDelay: '5s' }}
             />
           </div>
         </div>
