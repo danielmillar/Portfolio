@@ -26,4 +26,11 @@ export const projects: Project[] = [
     github: "https://github.com/danielmillar/SkASWM",
     featured: true
   },
+  {
+    title: "KwikMedical",
+    description: "A prototype medical system for emergency dispatch and ambulance management. Built with a focus on software architecture and system design patterns.",
+    technologies: ["React", "React Native", "Ktor"],
+    languages: ["TypeScript", "JavaScript", "Kotlin"],
+    featured: true
+  },
 ]; 
