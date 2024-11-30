@@ -2,7 +2,6 @@
 
 import { GithubIcon, DownloadIcon } from 'lucide-react';
 import { useAlert } from '@/contexts/AlertContext';
-import { FaReact, FaNodeJs, FaDocker } from 'react-icons/fa';
 import { SiTypescript, SiOpenjdk, SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact } from 'react-icons/si';
 
 export default function Hero() {
@@ -45,7 +44,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Replacing Image Section with Floating Icons */}
         <div className="relative flex-1 w-full hidden md:block h-[400px]">
           {/* Background gradient blur */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-teal-400/10 rounded-full blur-3xl" />
