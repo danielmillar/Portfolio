@@ -2,6 +2,7 @@ import Hero from '@/components/home/Hero';
 import Projects from '@/components/home/Projects';
 import Skills from '@/components/home/Skills';
 import Experience from '@/components/home/Experience';
+import Education from '@/components/home/Education';
 import Contact from '@/components/home/Contact';
 import Navigation from '@/components/shared/Navigation';
 import Footer from '@/components/shared/Footer';
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="flex-grow max-w-7xl mx-auto px-4 pt-24 pb-20 sm:px-6 lg:px-8">
         <Hero />
         <Experience />
+        <Education />
         <Projects />
         <Skills />
         <Contact />

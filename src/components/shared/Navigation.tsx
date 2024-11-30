@@ -48,6 +48,16 @@ export default function Navigation() {
             >
               Experience
             </Link>
+            <Link 
+              href="/education" 
+              className={`${
+                pathname === '/education' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              Education
+            </Link>
           </div>
         </div>
       </nav>
