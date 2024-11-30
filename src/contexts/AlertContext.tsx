@@ -71,15 +71,16 @@ export function AlertProvider({ children }: { children: ReactNode }) {
 
   return (
     <AlertContext.Provider value={{ alerts, showAlert, removeAlert }}>
-      <div className="fixed top-4 right-4 left-auto z-[9999] flex flex-col-reverse gap-4 w-auto ml-auto">
+      <div className="fixed top-4 right-4 left-auto z-[9999] flex flex-col-reverse gap-4 w-auto ml-auto pointer-events-none">
         {alerts.map((alert) => (
-          <Alert
-            key={alert.id}
-            isOpen={alert.isVisible}
-            onClose={() => removeAlert(alert.id)}
-            message={alert.message}
-            duration={alert.duration}
-          />
+          <div key={alert.id} className="pointer-events-auto">
+            <Alert
+              isOpen={alert.isVisible}
+              onClose={() => removeAlert(alert.id)}
+              message={alert.message}
+              duration={alert.duration}
+            />
+          </div>
         ))}
       </div>
       {children}

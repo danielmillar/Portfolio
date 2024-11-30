@@ -38,7 +38,7 @@ export function Alert({ isOpen, onClose, message, duration = 5000 }: AlertProps)
   return (
     <div 
       ref={alertRef}
-      className="z-[9999] w-full"
+      className="z-[9999] w-full max-w-sm"
     >
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 flex items-center gap-3">
         <p className="text-gray-700 dark:text-gray-200">{message}</p>
