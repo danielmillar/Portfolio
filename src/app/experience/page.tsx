@@ -12,7 +12,7 @@ export default function ExperiencePage() {
                         Professional Experience
                     </h1>
                     <p className="text-gray-600 dark:text-gray-400">
-                        My professional journey and the impactful roles I've held throughout my career.
+                        My professional journey and the impactful roles I&apos;ve held throughout my career.
                     </p>
                 </div>
 
