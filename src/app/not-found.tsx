@@ -1,4 +1,5 @@
 import Navigation from '@/components/shared/Navigation';
+import Footer from '@/components/shared/Footer';
 
 export const runtime = "edge";
 
@@ -22,6 +23,7 @@ export default function NotFound() {
           </a>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
