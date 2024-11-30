@@ -1,7 +1,9 @@
 'use client';
-import Image from 'next/image';
+
 import { GithubIcon, DownloadIcon } from 'lucide-react';
 import { useAlert } from '@/contexts/AlertContext';
+import { FaReact, FaNodeJs, FaDocker } from 'react-icons/fa';
+import { SiTypescript, SiOpenjdk, SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact } from 'react-icons/si';
 
 export default function Hero() {
   const { showAlert } = useAlert();
@@ -43,20 +45,52 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Image Section */}
-        <div className="relative flex-1 w-full hidden md:block">
+        {/* Replacing Image Section with Floating Icons */}
+        <div className="relative flex-1 w-full hidden md:block h-[400px]">
           {/* Background gradient blur */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-teal-400/10 rounded-full blur-3xl" />
           
-          {/* Image container */}
-          <div className="relative w-full aspect-square md:aspect-[4/3]">
-            <Image
-              src="/hero.jpg"
-              alt="Profile"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-contain"
-              priority
+          {/* Floating Icons Container */}
+          <div className="relative w-full h-full">
+            <SiTypescript 
+              className="text-4xl text-blue-500 absolute animate-float"
+              style={{ top: '20%', left: '30%', animationDelay: '0s' }}
+            />
+            <SiOpenjdk 
+              className="text-4xl text-red-500 absolute animate-float"
+              style={{ top: '40%', left: '60%', animationDelay: '0.5s' }}
+            />
+            <SiKotlin 
+              className="text-4xl text-purple-500 absolute animate-float"
+              style={{ top: '60%', left: '25%', animationDelay: '1s' }}
+            />
+            <SiReact 
+              className="text-4xl text-cyan-400 absolute animate-float"
+              style={{ top: '30%', left: '70%', animationDelay: '1.5s' }}
+            />
+            <SiNextdotjs 
+              className="text-4xl text-gray-700 dark:text-gray-300 absolute animate-float"
+              style={{ top: '70%', left: '55%', animationDelay: '2s' }}
+            />
+            <SiDocker 
+              className="text-4xl text-blue-500 absolute animate-float"
+              style={{ top: '45%', left: '40%', animationDelay: '2.5s' }}
+            />
+            <SiIntellijidea 
+              className="text-4xl text-pink-500 absolute animate-float"
+              style={{ top: '25%', left: '45%', animationDelay: '3s' }}
+            />
+            <SiVisualstudiocode 
+              className="text-4xl text-blue-600 absolute animate-float"
+              style={{ top: '55%', left: '75%', animationDelay: '3.5s' }}
+            />
+            <SiMongodb 
+              className="text-4xl text-green-500 absolute animate-float"
+              style={{ top: '75%', left: '35%', animationDelay: '4s' }}
+            />
+            <SiGradle 
+              className="text-4xl text-blue-400 absolute animate-float"
+              style={{ top: '35%', left: '85%', animationDelay: '4.5s' }}
             />
           </div>
         </div>
