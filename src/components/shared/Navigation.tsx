@@ -2,9 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { HiMenu, HiX } from 'react-icons/hi';
 
 export default function Navigation() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
@@ -17,7 +20,19 @@ export default function Navigation() {
             Daniel Millar
           </Link>
           
-          <div className="flex gap-6">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <HiX className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+            ) : (
+              <HiMenu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+            )}
+          </button>
+
+          <div className="hidden md:flex gap-6">
             <Link 
               href="/" 
               className={`${
@@ -60,6 +75,51 @@ export default function Navigation() {
             </Link>
           </div>
         </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden py-4 space-y-4">
+            <Link 
+              href="/" 
+              className={`block ${
+                pathname === '/' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/projects" 
+              className={`block ${
+                pathname === '/projects' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              Projects
+            </Link>
+            <Link 
+              href="/experience" 
+              className={`block ${
+                pathname === '/experience' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              Experience
+            </Link>
+            <Link 
+              href="/education" 
+              className={`block ${
+                pathname === '/education' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              Education
+            </Link>
+          </div>
+        )}
       </nav>
     </header>
   );
