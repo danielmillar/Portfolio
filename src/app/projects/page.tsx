@@ -1,5 +1,4 @@
 import Navigation from '@/components/shared/Navigation';
-import Header from '@/components/home/Header';
 import Footer from '@/components/shared/Footer';
 import { GithubIcon, Globe } from 'lucide-react';
 import { Project, projects } from '@/data/projects';
@@ -9,7 +8,6 @@ export default function ProjectsPage() {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <Navigation />
       <main className="flex-grow max-w-7xl mx-auto px-4 pt-24 pb-20 sm:px-6 lg:px-8">
-        <Header />
         <div className="mb-12">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Projects
