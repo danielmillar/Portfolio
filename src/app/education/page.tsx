@@ -16,9 +16,16 @@ export default function EducationPage() {
                     </p>
                 </div>
 
-                <div className="space-y-8">
+                <div className="space-y-8 relative">
+                    <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" />
+                    
                     {education.map((edu, index) => (
-                        <EducationCard key={index} {...edu} />
+                        <EducationCard 
+                            key={index} 
+                            {...edu} 
+                            isFirst={index === 0}
+                            isLast={index === education.length - 1}
+                        />
                     ))}
                 </div>
             </main>
@@ -27,9 +34,28 @@ export default function EducationPage() {
     );
 }
 
-function EducationCard({ school, degree, period, description, achievements, subjects }: Education) {
+function EducationCard({ 
+    school, 
+    degree, 
+    period, 
+    description, 
+    achievements, 
+    subjects,
+    isFirst,
+    isLast 
+}: Education & { isFirst: boolean; isLast: boolean }) {
     return (
-        <div className="group rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition">
+        <div className="group rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition relative">
+            <div className="absolute left-[-12px] top-8 w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-400 flex items-center justify-center">
+                {isFirst ? (
+                    <span className="text-white text-sm">▲</span>
+                ) : isLast ? (
+                    <span className="text-white text-sm">▼</span>
+                ) : (
+                    <div className="w-3 h-3 rounded-full bg-white" />
+                )}
+            </div>
+
             <div className="flex flex-col space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <div>
