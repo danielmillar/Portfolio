@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { experiences } from '@/data/experience';
-import { Briefcase, ArrowRight } from 'lucide-react';
+import { HiBriefcase, HiArrowRight } from 'react-icons/hi2';
 
 export default function Experience() {
     const featuredExperiences = experiences.filter(exp => exp.featured).slice(0, 2);
@@ -18,7 +18,7 @@ export default function Experience() {
                         className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 text-sm"
                     >
                         View All
-                        <ArrowRight className="w-4 h-4" />
+                        <HiArrowRight className="w-4 h-4" />
                     </Link>
                 )}
             </div>
@@ -34,7 +34,7 @@ export default function Experience() {
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                                    <Briefcase className="w-5 h-5" />
+                                    <HiBriefcase className="w-5 h-5" />
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-900 dark:text-white">

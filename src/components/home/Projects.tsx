@@ -1,4 +1,5 @@
-import { GithubIcon, Globe, ArrowRight } from 'lucide-react';
+import { LuGithub  } from 'react-icons/lu';
+import { HiGlobeAlt, HiArrowRight } from 'react-icons/hi2';
 import { Project, projects } from '@/data/projects';
 import Link from 'next/link';
 
@@ -20,7 +21,7 @@ export default function Projects() {
             className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 text-sm"
           >
             View All
-            <ArrowRight className="w-4 h-4" />
+            <HiArrowRight className="w-4 h-4" />
           </Link>
         )}
       </div>
@@ -78,7 +79,7 @@ function ProjectCard({ title, description, technologies, languages, github, live
                 rel="noopener noreferrer"
                 className="flex items-center text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
               >
-                <GithubIcon className="w-5 h-5 mr-2" />
+                <LuGithub className="w-5 h-5 mr-2" />
                 <span>Code</span>
               </a>
             )}
@@ -89,7 +90,7 @@ function ProjectCard({ title, description, technologies, languages, github, live
                 rel="noopener noreferrer"
                 className="flex items-center text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
               >
-                <Globe className="w-5 h-5 mr-2" />
+                <HiGlobeAlt className="w-5 h-5 mr-2" />
                 <span>Live Demo</span>
               </a>
             )}

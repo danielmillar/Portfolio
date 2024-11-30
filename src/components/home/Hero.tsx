@@ -1,6 +1,7 @@
 'use client';
 
-import { GithubIcon, DownloadIcon } from 'lucide-react';
+import { LuGithub } from 'react-icons/lu';
+import { HiDownload } from 'react-icons/hi';
 import { useAlert } from '@/contexts/AlertContext';
 import { SiTypescript, SiEclipseadoptium , SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact } from 'react-icons/si';
 
@@ -32,14 +33,14 @@ export default function Hero() {
               rel="noopener noreferrer"
             >
               <span>GitHub</span>
-              <GithubIcon className="w-5 h-5" />
+              <LuGithub className="w-5 h-5" />
             </a>
             <button
               onClick={() => showAlert("Resume will be available soon!")}
               className="group px-6 py-2 border border-gray-900 dark:border-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex items-center gap-2"
             >
               <span>Resume</span>
-              <DownloadIcon className="w-4 h-4" />
+              <HiDownload className="w-4 h-4" />
             </button>
           </div>
         </div>

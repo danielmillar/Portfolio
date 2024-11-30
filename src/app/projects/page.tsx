@@ -1,6 +1,7 @@
 import Navigation from '@/components/shared/Navigation';
 import Footer from '@/components/shared/Footer';
-import { GithubIcon, Globe } from 'lucide-react';
+import { LuGithub } from 'react-icons/lu';
+import { HiGlobeAlt } from 'react-icons/hi2';
 import { Project, projects } from '@/data/projects';
 
 export default function ProjectsPage() {
@@ -73,7 +74,7 @@ function ProjectCard({ title, description, technologies, languages, github, live
                 rel="noopener noreferrer"
                 className="flex items-center text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
               >
-                <GithubIcon className="w-5 h-5 mr-2" />
+                <LuGithub className="w-5 h-5 mr-2" />
                 <span>Code</span>
               </a>
             )}
@@ -84,7 +85,7 @@ function ProjectCard({ title, description, technologies, languages, github, live
                 rel="noopener noreferrer"
                 className="flex items-center text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
               >
-                <Globe className="w-5 h-5 mr-2" />
+                <HiGlobeAlt className="w-5 h-5 mr-2" />
                 <span>Live Demo</span>
               </a>
             )}

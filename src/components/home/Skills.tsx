@@ -1,11 +1,11 @@
-import {
-  Code2,
-  Database,
-  Wrench,
-  Terminal,
-  Laptop,
-  Layers
-} from 'lucide-react';
+import { 
+  HiWrench, 
+  HiCommandLine, 
+  HiComputerDesktop, 
+  HiSquares2X2 
+} from 'react-icons/hi2';
+
+import { HiCode, HiDatabase } from 'react-icons/hi'
 
 interface SkillCategory {
   title: string;
@@ -16,32 +16,32 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     title: "IDEs",
-    icon: <Laptop className="w-5 h-5" />,
+    icon: <HiComputerDesktop className="w-5 h-5" />,
     skills: ["IntelliJ IDEA", "Visual Studio Code"]
   },
   {
     title: "Languages",
-    icon: <Code2 className="w-5 h-5" />,
+    icon: <HiCode className="w-5 h-5" />,
     skills: ["JavaScript", "TypeScript", "Java", "Kotlin"]
   },
   {
     title: "Tools & Platforms",
-    icon: <Wrench className="w-5 h-5" />,
+    icon: <HiWrench className="w-5 h-5" />,
     skills: ["Git", "Gradle", "Node.js", "Docker"]
   },
   {
     title: "Operating Systems",
-    icon: <Terminal className="w-5 h-5" />,
+    icon: <HiCommandLine className="w-5 h-5" />,
     skills: ["Windows", "Linux"]
   },
   {
     title: "Databases",
-    icon: <Database className="w-5 h-5" />,
+    icon: <HiDatabase className="w-5 h-5" />,
     skills: ["MongoDB", "SQL"]
   },
   {
     title: "Frameworks",
-    icon: <Layers className="w-5 h-5" />,
+    icon: <HiSquares2X2 className="w-5 h-5" />,
     skills: ["React", "Next.js", "Ktor"]
   }
 ];

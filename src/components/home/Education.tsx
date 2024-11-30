@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { education } from '@/data/education';
-import { GraduationCap, ArrowRight } from 'lucide-react';
+import { HiAcademicCap, HiArrowRight } from 'react-icons/hi';
 
 export default function Education() {
     const featuredEducation = education.filter(edu => edu.featured).slice(0, 2);
@@ -18,7 +18,7 @@ export default function Education() {
                         className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 text-sm"
                     >
                         View All
-                        <ArrowRight className="w-4 h-4" />
+                        <HiArrowRight className="w-4 h-4" />
                     </Link>
                 )}
             </div>
@@ -29,12 +29,10 @@ export default function Education() {
                         href="/education"
                         key={index}
                     >
-                        <div
-                            className="h-full p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition cursor-pointer"
-                        >
+                        <div className="h-full p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition cursor-pointer">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                                    <GraduationCap className="w-5 h-5" />
+                                    <HiAcademicCap className="w-5 h-5" />
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-900 dark:text-white">

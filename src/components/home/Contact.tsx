@@ -1,4 +1,5 @@
-import { Mail, GithubIcon } from 'lucide-react';
+import { HiMail } from 'react-icons/hi';
+import { LuGithub } from 'react-icons/lu';
 
 interface ContactLink {
   platform: string;
@@ -11,13 +12,13 @@ const contactLinks: ContactLink[] = [
   {
     platform: "Email",
     href: "mailto:contact@danielmillar.dev",
-    icon: <Mail className="w-5 h-5" />,
+    icon: <HiMail className="w-5 h-5" />,
     username: "contact@danielmillar.dev"
   },
   {
     platform: "GitHub",
     href: "https://github.com/danielmillar",
-    icon: <GithubIcon className="w-5 h-5" />,
+    icon: <LuGithub className="w-5 h-5" />,
     username: "@danielmillar"
   },
   {

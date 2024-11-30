@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "gsap": "^3.12.5",
-    "lucide-react": "^0.462.0",
     "next": "^15.0.3",
     "react": "^18",
     "react-dom": "^18",
