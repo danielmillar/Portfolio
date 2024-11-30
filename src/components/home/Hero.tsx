@@ -2,7 +2,7 @@
 
 import { GithubIcon, DownloadIcon } from 'lucide-react';
 import { useAlert } from '@/contexts/AlertContext';
-import { SiTypescript, SiOpenjdk, SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact } from 'react-icons/si';
+import { SiTypescript, SiEclipseadoptium , SiKotlin, SiIntellijidea, SiVisualstudiocode, SiNextdotjs, SiGradle, SiDocker, SiMongodb, SiReact } from 'react-icons/si';
 
 export default function Hero() {
   const { showAlert } = useAlert();
@@ -54,7 +54,7 @@ export default function Hero() {
               className="text-4xl text-blue-500 absolute animate-float"
               style={{ top: '20%', left: '30%', animationDelay: '0s' }}
             />
-            <SiOpenjdk 
+            <SiEclipseadoptium  
               className="text-4xl text-red-500 absolute animate-float"
               style={{ top: '40%', left: '60%', animationDelay: '0.5s' }}
             />
