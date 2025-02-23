@@ -18,20 +18,25 @@ interface ApiResponse {
 }
 
 function isAdvisoryActive(advisory: LaunchAdvisory): boolean {
+    // Get current UTC time
     const now = new Date();
-    const utcNow = new Date(Date.UTC(
-        now.getUTCFullYear(),
-        now.getUTCMonth(),
-        now.getUTCDate(),
-        now.getUTCHours(),
-        now.getUTCMinutes(),
-        now.getUTCSeconds()
+
+    // Parse the advisory end time string (format: "DD/MMM/YYYY HH:mm")
+    const [datePart, timePart] = advisory.advisoryendtimestr.split(' ');
+    const [day, month, year] = datePart.split('/');
+    const [hours, minutes] = timePart.split(':');
+
+    // Create a UTC date string in ISO format
+    const monthIndex = new Date(`${month} 1, 2000`).getMonth(); // Convert MMM to month number
+    const endDate = new Date(Date.UTC(
+        parseInt(year),
+        monthIndex,
+        parseInt(day),
+        parseInt(hours),
+        parseInt(minutes)
     ));
-    
-    // Parse the advisory end time in UTC
-    const endDate = new Date(advisory.advisoryendtimestr.replace(/(\d{2})\/(\w{3})\/(\d{4})\s(.*)/, '$3-$2-$1 $4Z'));
-    
-    return endDate > utcNow;
+
+    return endDate > now;
 }
 
 export default function SpaceXPage() {
