@@ -26,7 +26,7 @@ export default function Education() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {featuredEducation.map((edu, index) => (
                     <Link
-                        href="/education"
+                        href={`/education#${edu.school}`}
                         key={index}
                     >
                         <div className="h-full p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition cursor-pointer">

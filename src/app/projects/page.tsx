@@ -31,7 +31,7 @@ export default function ProjectsPage() {
 
 function ProjectCard({ title, description, technologies, languages, github, liveUrl }: Project) {
   return (
-    <div className="group rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition">
+    <div id={title} style={{ scrollMarginTop: '100px' }} className="group rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition">
       <div className="flex flex-col h-full">
         <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
           {title}

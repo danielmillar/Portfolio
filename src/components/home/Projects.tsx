@@ -1,4 +1,4 @@
-import { LuGithub  } from 'react-icons/lu';
+import { LuGithub } from 'react-icons/lu';
 import { HiGlobeAlt, HiArrowRight } from 'react-icons/hi2';
 import { Project, projects } from '@/data/projects';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ export default function Projects() {
     .filter(project => project.featured)
     .slice(0, 2);
   const hasMoreProjects = projects.length > 2;
-  
+
   return (
     <section className="mb-16">
       <div className="flex justify-between items-center mb-8">
@@ -44,12 +44,12 @@ function ProjectCard({ title, description, technologies, languages, github, live
         <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
           {description}
         </p>
-        
+
         <div className="space-y-4">
           {/* Technologies */}
           <div className="flex flex-wrap gap-2">
             {technologies.map((tech, index) => (
-              <span 
+              <span
                 key={index}
                 className="px-3 py-1 text-sm bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300 rounded-full"
               >
@@ -57,11 +57,11 @@ function ProjectCard({ title, description, technologies, languages, github, live
               </span>
             ))}
           </div>
-          
+
           {/* Languages */}
           <div className="flex flex-wrap gap-2">
             {languages.map((lang, index) => (
-              <span 
+              <span
                 key={index}
                 className="px-3 py-1 text-sm bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 rounded-full"
               >
@@ -73,7 +73,7 @@ function ProjectCard({ title, description, technologies, languages, github, live
           {/* Links */}
           <div className="flex gap-4 pt-2">
             {github && (
-              <a 
+              <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -84,7 +84,7 @@ function ProjectCard({ title, description, technologies, languages, github, live
               </a>
             )}
             {liveUrl && (
-              <a 
+              <a
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -94,6 +94,13 @@ function ProjectCard({ title, description, technologies, languages, github, live
                 <span>Live Demo</span>
               </a>
             )}
+            {/* <a 
+              href={`/projects#${title}`}
+              className="flex items-center text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
+            >
+              <HiArrowRight className="w-5 h-5 mr-2" />
+              <span>Details</span>
+            </a> */}
           </div>
         </div>
       </div>

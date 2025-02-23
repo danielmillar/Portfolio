@@ -45,7 +45,7 @@ function EducationCard({
     isLast 
 }: Education & { isFirst: boolean; isLast: boolean }) {
     return (
-        <div className="group rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition relative">
+        <div id={school} style={{ scrollMarginTop: '100px' }} className="group rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition relative">
             <div className="absolute left-[-12px] top-8 w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-400 flex items-center justify-center">
                 {isFirst ? (
                     <span className="text-white text-sm">▲</span>

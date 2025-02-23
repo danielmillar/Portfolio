@@ -26,7 +26,7 @@ export default function Experience() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {featuredExperiences.map((experience, index) => (
                     <Link
-                        href="/experience"
+                        href={`/experience#${experience.company}`}
                         key={index}
                     >
                         <div
