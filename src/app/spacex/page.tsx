@@ -19,28 +19,28 @@ interface ApiResponse {
 
 function isAdvisoryActive(advisory: LaunchAdvisory): boolean {
     const now = new Date();
-    const endDate = new Date(advisory.advisoryendtimestr.replace(/(\d{2})\/(\w{3})\/(\d{4})\s(.*)/, '$3-$2-$1 $4'));
-    return endDate > now;
+    const utcNow = new Date(Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes(),
+        now.getUTCSeconds()
+    ));
+    
+    // Parse the advisory end time in UTC
+    const endDate = new Date(advisory.advisoryendtimestr.replace(/(\d{2})\/(\w{3})\/(\d{4})\s(.*)/, '$3-$2-$1 $4Z'));
+    
+    return endDate > utcNow;
 }
 
 export default function SpaceXPage() {
-    const [launchData, setLaunchData] = useState<LaunchAdvisory[]>([]);
-    const [showActive, setShowActive] = useState(true); // Default to showing active
-    const [nextUpdate, setNextUpdate] = useState(300); // 5 minutes in seconds
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
-
-    // Fetch data function
-    const fetchAdvisories = async () => {
-        try {
-            const response = await fetch('https://faa-serverless-function.vercel.app/api/advisories', {
-                method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                mode: 'cors', // Explicitly set CORS mode
-                cache: 'no-cache', // Disable caching to ensure fresh data
+                mode: 'cors', 
+                cache: 'no-cache', 
             });
 
             if (!response.ok) throw new Error('Failed to fetch data');
