@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { HiMenu, HiX } from 'react-icons/hi';
+import { HiMenu, HiX, HiSparkles } from 'react-icons/hi';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -73,6 +73,21 @@ export default function Navigation() {
             >
               Education
             </Link>
+            <Link 
+              href="/spacex" 
+              className={`group relative flex items-center gap-2 ${
+                pathname === '/spacex' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              <span>SpaceX</span>
+              <HiSparkles className="w-4 h-4 text-yellow-400 animate-pulse" />
+              <span className="absolute -top-1 -right-2 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+            </Link>
           </div>
         </div>
 
@@ -118,9 +133,24 @@ export default function Navigation() {
             >
               Education
             </Link>
+            <Link 
+              href="/spacex" 
+              className={`block flex items-center gap-2 ${
+                pathname === '/spacex' 
+                  ? 'text-blue-500 dark:text-blue-400' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+              } transition-colors`}
+            >
+              <span>SpaceX</span>
+              <HiSparkles className="w-4 h-4 text-yellow-400 animate-pulse" />
+              <span className="flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+            </Link>
           </div>
         )}
       </nav>
     </header>
   );
-} 
+}

@@ -10,13 +10,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "SpaceX Launch Advisory",
+    description: "A real-time dashboard displaying SpaceX launch advisories from the FAA. Features live updates, interactive launch window details, and filtering capabilities for active and past launches.",
+    technologies: ["Next.js", "React", "Tailwind CSS", "MongoDB"],
+    languages: ["TypeScript", "JavaScript"],
+    github: "https://github.com/danielmillar/portfolio",
+    liveUrl: "https://danielmillar.dev/spacex",
+    featured: true
+  },
+  {
     title: "Portfolio Website",
     description: "My personal portfolio showcasing my journey as a software engineer. A clean, modern space to share my projects and professional experience.",
     technologies: ["Next.js", "React", "Tailwind CSS"],
     languages: ["TypeScript", "JavaScript", "HTML", "CSS"],
     github: "https://github.com/danielmillar/portfolio",
     liveUrl: "https://danielmillar.dev",
-    featured: true
+    featured: false
   },
   {
     title: "SkASWM",
@@ -33,4 +42,4 @@ export const projects: Project[] = [
     languages: ["TypeScript", "JavaScript", "Kotlin"],
     featured: true
   },
-]; 
+];
