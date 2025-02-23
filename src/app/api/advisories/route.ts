@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const vercelUrl = 'https://faa-serverless-function.vercel.app/api/advisories';
+    console.log('Fetching from Vercel:', vercelUrl); // Diagnostic
     const response = await fetch(vercelUrl, {
       method: 'GET',
       headers: {
@@ -10,6 +11,7 @@ export async function GET() {
       },
     });
 
+    console.log('Vercel response status:', response.status); // Diagnostic
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`Vercel fetch failed with status ${response.status}: ${errorText}`);
@@ -19,11 +21,12 @@ export async function GET() {
       );
     }
 
-    const data = await response.json();
+    const data: any = await response.json();
+    console.log('Vercel response data received:', data.length); // Diagnostic
     return NextResponse.json(data);
   } catch (error) {
-    const errorMessage = (error instanceof Error) ? error.message : 'Unknown error';
-    console.error('Error in API route:', errorMessage);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error in API route:', errorMessage, (error as Error).stack); // Full stack for clarity
     return NextResponse.json(
       { error: 'Internal Server Error', details: errorMessage },
       { status: 500 }
