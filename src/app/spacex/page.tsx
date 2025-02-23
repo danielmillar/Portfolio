@@ -26,20 +26,20 @@ export default function SpaceXPage() {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
-    // Fetch data function
+    // Update fetch function to use Vercel API
     const fetchAdvisories = async () => {
         try {
-            const response = await fetch('/api/advisories');
+            const response = await fetch('https://faa-serverless-function.vercel.app/api/advisories');
             if (!response.ok) throw new Error('Failed to fetch data');
             const data = await response.json();
             
             // Validate data structure
-            if (!Array.isArray(data)) {
-                throw new Error('Invalid data format received - expected array');
+            if (!Array.isArray(data.advisories)) {
+                throw new Error('Invalid data format received - expected array of advisories');
             }
 
             // Validate each advisory
-            const validAdvisories = data.filter(advisory => {
+            const validAdvisories = data.advisories.filter(advisory => {
                 const requiredFields = ['advisorystarttimestr', 'advisoryendtimestr', 'details', 'reason', 'summary'];
                 return requiredFields.every(field => advisory[field]);
             });
