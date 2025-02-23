@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import clientPromise from '@/data/mongodb'
 
+export const runtime = 'edge'
+
 export async function GET() {
   try {
     const client = await clientPromise
