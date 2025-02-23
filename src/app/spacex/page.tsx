@@ -33,7 +33,16 @@ export default function SpaceXPage() {
     // Fetch data function
     const fetchAdvisories = async () => {
         try {
-            const response = await fetch('https://faa-serverless-function.vercel.app/api/advisories');
+            const response = await fetch('https://faa-serverless-function.vercel.app/api/advisories', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors', // Explicitly set CORS mode
+                cache: 'no-cache', // Disable caching to ensure fresh data
+            });
+
             if (!response.ok) throw new Error('Failed to fetch data');
             const data = await response.json() as ApiResponse;
             
