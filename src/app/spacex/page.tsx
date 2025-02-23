@@ -35,23 +35,31 @@ function isAdvisoryActive(advisory: LaunchAdvisory): boolean {
 }
 
 export default function SpaceXPage() {
+    const [launchData, setLaunchData] = useState<LaunchAdvisory[]>([]);
+    const [showActive, setShowActive] = useState(true);
+    const [nextUpdate, setNextUpdate] = useState(300);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    const fetchAdvisories = async () => {
+        try {
+            const response = await fetch('https://faa-serverless-function.vercel.app/api/advisories', {
+                method: 'GET',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                mode: 'cors', 
-                cache: 'no-cache', 
+                mode: 'cors',
+                cache: 'no-cache'
             });
 
             if (!response.ok) throw new Error('Failed to fetch data');
             const data = await response.json() as ApiResponse;
             
-            // Type guard for the response
             if (!data || typeof data !== 'object' || !('advisories' in data)) {
                 throw new Error('Invalid data format received');
             }
 
-            // Validate each advisory
             const validAdvisories = data.advisories.filter(advisory => {
                 const requiredFields = ['advisorystarttimestr', 'advisoryendtimestr', 'details', 'reason', 'summary'];
                 return requiredFields.every(field => advisory[field as keyof LaunchAdvisory] !== undefined);
