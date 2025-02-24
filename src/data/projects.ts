@@ -12,7 +12,7 @@ export const projects: Project[] = [
   {
     title: "SpaceX Launch Advisory",
     description: "A real-time dashboard displaying SpaceX launch advisories from the FAA. Features live updates, interactive launch window details, and filtering capabilities for active and past launches.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "MongoDB"],
+    technologies: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Cloudflare Workers", "Vercel Serverless"],
     languages: ["TypeScript", "JavaScript"],
     github: "https://github.com/danielmillar/portfolio",
     liveUrl: "https://danielmillar.dev/spacex",
