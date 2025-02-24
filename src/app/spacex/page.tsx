@@ -48,7 +48,7 @@ export default function SpaceXPage() {
 
     const fetchAdvisories = async () => {
         try {
-            const response = await fetch('https://faa-serverless-function.vercel.app/api/advisories', {
+            const response = await fetch('https://api.danielmillar.dev/api/spacex/advisories', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
