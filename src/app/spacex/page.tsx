@@ -18,17 +18,21 @@ interface ApiResponse {
 }
 
 function isAdvisoryActive(advisory: LaunchAdvisory): boolean {
-    // Get current UTC time
     const now = new Date();
+    const zuluNow = new Date(Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes()
+    ));
 
-    // Parse the advisory end time string (format: "DD/MMM/YYYY HH:mm")
     const [datePart, timePart] = advisory.advisoryendtimestr.split(' ');
     const [day, month, year] = datePart.split('/');
     const [hours, minutes] = timePart.split(':');
 
-    // Create a UTC date string in ISO format
-    const monthIndex = new Date(`${month} 1, 2000`).getMonth(); // Convert MMM to month number
-    const endDate = new Date(Date.UTC(
+    const monthIndex = new Date(`${month} 1, 2000`).getMonth();
+    const zuluEndDate = new Date(Date.UTC(
         parseInt(year),
         monthIndex,
         parseInt(day),
@@ -36,7 +40,17 @@ function isAdvisoryActive(advisory: LaunchAdvisory): boolean {
         parseInt(minutes)
     ));
 
-    return endDate > now;
+    return zuluEndDate > zuluNow;
+}
+
+function getInfoUrl(summary: string): string | null {
+    if (summary.toLowerCase().includes('starlink')) {
+        return 'https://www.starlink.com/';
+    }
+    if (summary.toLowerCase().includes('starship')) {
+        return 'https://www.spacex.com/vehicles/starship/';
+    }
+    return null;
 }
 
 export default function SpaceXPage() {
@@ -238,7 +252,7 @@ function LaunchAdvisoryCard({
 
             if (parts[2] && parts[2].includes('Z')) {
                 const [start, end] = parts[2].split('-');
-                const formattedTime = `${start.replace('Z', '')} - ${end.replace('Z', '')} UTC`;
+                const formattedTime = `${start} - ${end}`;
                 parts[2] = formattedTime;
             }
 
@@ -274,7 +288,7 @@ function LaunchAdvisoryCard({
         }
     }
 
-    const tableHeaders = ["Launch Window", "Date", "Time (UTC)"];
+    const tableHeaders = ["Launch Window", "Date", "Time (Z)"];
 
     const StatusBadge = () => (
         <span className={`
@@ -298,6 +312,29 @@ function LaunchAdvisoryCard({
                                     {summary}
                                 </h2>
                                 <StatusBadge />
+                                {getInfoUrl(summary) && (
+                                    <a
+                                        href={getInfoUrl(summary)!}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                                        title="Learn more"
+                                    >
+                                        <svg 
+                                            className="w-5 h-5" 
+                                            fill="none" 
+                                            viewBox="0 0 24 24" 
+                                            stroke="currentColor"
+                                        >
+                                            <path 
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round" 
+                                                strokeWidth={2} 
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                                            />
+                                        </svg>
+                                    </a>
+                                )}
                             </div>
                             <p className="text-blue-600 dark:text-blue-400">{reason}</p>
                         </div>
