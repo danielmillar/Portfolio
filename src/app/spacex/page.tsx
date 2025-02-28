@@ -74,7 +74,7 @@ export default function SpaceXPage() {
 
             if (!response.ok) throw new Error('Failed to fetch data');
             const data = await response.json() as ApiResponse;
-            
+
             if (!data || typeof data !== 'object' || !('advisories' in data)) {
                 throw new Error('Invalid data format received');
             }
@@ -120,7 +120,7 @@ export default function SpaceXPage() {
     }, []);
 
     // Add filtered data computation
-    const filteredLaunchData = launchData.filter(advisory => 
+    const filteredLaunchData = launchData.filter(advisory =>
         showActive ? isAdvisoryActive(advisory) : !isAdvisoryActive(advisory)
     );
 
@@ -140,21 +140,19 @@ export default function SpaceXPage() {
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={() => setShowActive(true)}
-                                    className={`px-6 py-1.5 rounded-l-full text-sm min-w-[80px] ${
-                                        showActive 
-                                            ? 'bg-blue-500 text-white' 
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
-                                    }`}
+                                    className={`px-6 py-1.5 rounded-l-full text-sm min-w-[80px] ${showActive
+                                        ? 'bg-blue-500 text-white'
+                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+                                        }`}
                                 >
                                     Active
                                 </button>
                                 <button
                                     onClick={() => setShowActive(false)}
-                                    className={`px-6 py-1.5 rounded-r-full text-sm min-w-[80px] ${
-                                        !showActive 
-                                            ? 'bg-blue-500 text-white' 
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
-                                    }`}
+                                    className={`px-6 py-1.5 rounded-r-full text-sm min-w-[80px] ${!showActive
+                                        ? 'bg-blue-500 text-white'
+                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+                                        }`}
                                 >
                                     Past
                                 </button>
@@ -181,9 +179,9 @@ export default function SpaceXPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredLaunchData.map((advisory, index) => (
-                        <LaunchAdvisoryCard 
-                            key={advisory.advisoryid || index} 
-                            {...advisory} 
+                        <LaunchAdvisoryCard
+                            key={advisory.advisoryid || index}
+                            {...advisory}
                             isActive={isAdvisoryActive(advisory)}
                         />
                     ))}
@@ -200,17 +198,17 @@ export default function SpaceXPage() {
     );
 }
 
-function LaunchAdvisoryCard({ 
-    advisorystarttimestr, 
-    advisoryendtimestr, 
-    details = '', 
-    reason, 
+function LaunchAdvisoryCard({
+    advisorystarttimestr,
+    advisoryendtimestr,
+    details = '',
+    reason,
     summary,
-    isActive 
+    isActive
 }: LaunchAdvisory) {
     const [isExpanded, setIsExpanded] = useState(false);
     const hasValidDetails = details && typeof details === 'string' && details.trim().length > 0;
-    
+
     if (!hasValidDetails) {
         return (
             <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800 hover:shadow-lg transition">
@@ -225,7 +223,7 @@ function LaunchAdvisoryCard({
                             </p>
                         </div>
                         <span className="text-sm text-gray-600 dark:text-gray-400">
-                            {advisorystarttimestr && advisoryendtimestr 
+                            {advisorystarttimestr && advisoryendtimestr
                                 ? `${advisorystarttimestr} - ${advisoryendtimestr}`
                                 : 'Time window not available'}
                         </span>
@@ -243,12 +241,15 @@ function LaunchAdvisoryCard({
     const formattedDetails = details.split('\n')
         .filter(line => line.trim())
         .map(line => {
-            const parts = line.split('\t').map(part => part.trim());
-            
-            if (parts[0].includes("Primary/Backup Days") || parts[0].includes("Dates")) {
-                return null;
-            }
+            const parts = line.split('\t').map(part => part.trim()).filter(Boolean);
 
+            const regex = /^(0[1-9]|[12]\d|3[01])\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s([01]\d|2[0-3])([0-5]\d)Z-([01]\d|2[0-3])([0-5]\d)Z$/i;
+
+            if (parts[1] && parts[1].match(regex)) {
+                let newPartOne = parts[1].split(' ')
+                parts[2] = newPartOne[2]
+                parts[1] = newPartOne.slice(0, -1).join(" ")
+            }
 
             if (parts[2] && parts[2].includes('Z')) {
                 const [start, end] = parts[2].split('-');
@@ -256,16 +257,13 @@ function LaunchAdvisoryCard({
                 parts[2] = formattedTime;
             }
 
-            return parts;
+            return parts
         })
-        .filter(Boolean); // Remove null entries
 
-    // Find primary launch
-    const primaryLaunch = formattedDetails.find(row => 
+    const primaryLaunch = formattedDetails.find(row =>
         row && row[0]?.toLowerCase().includes('primary')
     );
 
-    // Extract date and time
     let primaryDate = 'Date not available';
     let primaryTime = 'Time not available';
 
@@ -276,13 +274,13 @@ function LaunchAdvisoryCard({
                 const [startDay, endDatePart] = dateStr.split('/');
                 const month = endDatePart.match(/[A-Za-z]+/)?.[0] || '';
                 const endDay = endDatePart.match(/\d+/)?.[0] || '';
-                
+
                 primaryDate = `${startDay}/${endDay} ${month}`;
             } else {
                 primaryDate = dateStr;
             }
         }
-        
+
         if (primaryLaunch[2]) {
             primaryTime = primaryLaunch[2];
         }
@@ -293,7 +291,7 @@ function LaunchAdvisoryCard({
     const StatusBadge = () => (
         <span className={`
             px-2 py-0.5 rounded-full text-xs
-            ${isActive 
+            ${isActive
                 ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
                 : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'}
         `}>
@@ -320,17 +318,17 @@ function LaunchAdvisoryCard({
                                         className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                                         title="Learn more"
                                     >
-                                        <svg 
-                                            className="w-5 h-5" 
-                                            fill="none" 
-                                            viewBox="0 0 24 24" 
+                                        <svg
+                                            className="w-5 h-5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
                                             stroke="currentColor"
                                         >
-                                            <path 
-                                                strokeLinecap="round" 
-                                                strokeLinejoin="round" 
-                                                strokeWidth={2} 
-                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                                             />
                                         </svg>
                                     </a>
@@ -352,29 +350,29 @@ function LaunchAdvisoryCard({
                                 {primaryTime}
                             </span>
                         </div>
-                        
-                        <button 
+
+                        <button
                             onClick={() => setIsExpanded(true)}
                             className="group px-4 py-1.5 rounded-full transition-all duration-300 flex items-center gap-2 justify-center
                                 border border-gray-900 dark:border-white hover:bg-gray-100 dark:hover:bg-gray-800"
                         >
                             <span className="text-sm">View all launch windows</span>
-                            <svg 
-                                className="w-4 h-4" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
+                            <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={2} 
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                                 />
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={2} 
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
                                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                 />
                             </svg>
@@ -384,7 +382,7 @@ function LaunchAdvisoryCard({
             </div>
 
             {isExpanded && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
                     onClick={(e) => {
                         if (e.target === e.currentTarget) {
@@ -399,7 +397,7 @@ function LaunchAdvisoryCard({
                                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{summary}</h3>
                                     <p className="text-blue-600 dark:text-blue-400">{reason}</p>
                                 </div>
-                                <button 
+                                <button
                                     onClick={() => setIsExpanded(false)}
                                     className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                                 >
